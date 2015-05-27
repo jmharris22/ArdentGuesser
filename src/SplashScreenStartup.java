@@ -6,7 +6,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class SplashScreenStartup extends BasicGameState {
-
+//
 	private StateBasedGame game; 
 	private int timer;
 	
