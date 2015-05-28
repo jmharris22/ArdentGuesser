@@ -7,17 +7,24 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
+/** Contains the main method for the game. 
+*
+* @author Justin Harris
+* @version 0.01
+*/
 public class SimpleSlickGame extends StateBasedGame {
 
 
 
 
     // Application Properties
+	/** Width of the game screen */
     public static final int WIDTH   = 640;
+    /** Height of the game screen */
     public static final int HEIGHT  = 480;
+    /** Desired frames per second lock */
     public static final int FPS     = 60;
-    public static final double VERSION = 1.0;
+    public static final double VERSION = 0.01;
 
     // Class Constructor
     public SimpleSlickGame(String appName) {
