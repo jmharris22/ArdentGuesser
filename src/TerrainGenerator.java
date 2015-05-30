@@ -1,5 +1,4 @@
 import java.util.Random;
-
 import Math.SimplexNoise;
 
 
@@ -7,6 +6,7 @@ public class TerrainGenerator {
 	private int width;
 	private int height;
 	private int[][] grid;
+	private Tile[][] tiles;
 	
 	public TerrainGenerator(int width, int height){
 		this.width = width;
@@ -43,6 +43,15 @@ public class TerrainGenerator {
 	           this.grid[i][j] = integerResultClamp;
 	        }
 	    }
+		
+		//Create tile map and set the tiles' heights.
+		for(int i=0;i<height;i++){
+	        for(int j=0;j<width;j++){
+	        	this.tiles[i][j] = new Tile();
+	        	this.tiles[i][j].setHeight(this.grid[i][j]);
+	        	this.tiles[i][j].setType(Tile.TileType.Flat);
+	        }
+		}
 		
 		boolean correctionsMade = true;
 		boolean leftToRightFixes = false;
