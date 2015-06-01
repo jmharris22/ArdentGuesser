@@ -37,6 +37,7 @@ public class SimpleSlickGame extends StateBasedGame {
     	this.addState(new SplashScreenStartup());
         this.addState(new Menu());
         this.addState(new Game());
+        this.addState(new TerrainEditor());
     }
 
     // Main Method
