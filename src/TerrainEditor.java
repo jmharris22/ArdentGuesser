@@ -9,26 +9,30 @@ public class TerrainEditor extends BasicGameState {
 	
 	private StateBasedGame game;
 	private Map map;
+	private Camera c;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		// TODO Auto-generated method stub
 		this.game = arg1;
+		this.map = new TerrainGenerator(10, 10).getMap();
+		this.c = new Camera();
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
+	public void render(GameContainer gameContainer, StateBasedGame game, Graphics g)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		map.render(gameContainer, game, g, c);
 		
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
+	public void update(GameContainer gameContainer, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		
+		c.update(gameContainer, arg1, arg2);
 	}
 
 	@Override

@@ -27,16 +27,19 @@ public class Tile {
 	private Tile[] neighbors;
 	private TileType type;
 	private int x, y;
-
+	private static final int TILE_HEIGHT = 32;
+	private static final int TILE_WIDTH = 64;
+	
+	
 	public Tile(int gridX, int gridY) {
-		this.x = (int) (gridX * 64);
-        this.y = (int) (gridY * 32);
+		this.x = gridX;
+        this.y = gridY;
 	}
 
 	public static SpriteSheet getTileSheet() {
-		if(getTileSheet() == null) {
+		if(tileSheet == null) {
 			try {
-				setTileSheet(new SpriteSheet(new Image("art/terrain/Tiles.png"), 64, 64));
+				setTileSheet(new SpriteSheet(new Image("art/terrain/Tiles.png"), 64, 32));
 			} catch (SlickException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -71,11 +74,18 @@ public class Tile {
 
 	}
 	
-	public void render(GameContainer gameContainer, StateBasedGame game, Graphics g, Camera c)
+	public void render(GameContainer gameContainer, StateBasedGame game, Graphics g, Camera c, int colX, int colY)
 			throws SlickException {
 		switch(this.type) {
 			case Flat:
 				
+				float screenX = (this.x - this.y) * TILE_WIDTH/2;
+				float screenY = (this.x + this.y) * TILE_HEIGHT/2;
+				screenY = (float) (c.getWorldPosY() - screenY);
+				screenX = (float) (c.getWorldPosX() - screenX);
+			
+				getTileSheet().getSubImage(0, 0).draw(screenX,screenY);
+			
 				break;
 			case AdjoiningTriangleFace:
 				break;

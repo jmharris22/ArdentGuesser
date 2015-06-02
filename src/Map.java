@@ -29,6 +29,16 @@ public class Map {
 	public void render(GameContainer gameContainer, StateBasedGame game, Graphics g, Camera c)
 			throws SlickException {
 		
+		for (int i = 0; i < tiles.length; i++)
+        {
+            for (int j = tiles[i].length - 1; j >= 0; j--)
+            {
+                if (tiles[j][i] != null)
+                {
+                    tiles[j][i].render(gameContainer, game, g, c, j, i);
+                }
+            }
+        }
 		
 	}
 	

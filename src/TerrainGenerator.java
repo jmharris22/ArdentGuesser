@@ -12,6 +12,7 @@ public class TerrainGenerator {
 		this.width = width;
 		this.height = height;
 		this.grid = new int[height][width];
+		this.tiles = new Tile[height][width];
 		this.generateTerrain();
 	}
 	

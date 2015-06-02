@@ -1,10 +1,15 @@
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
+
 
 public class Camera {
 	private double worldPosX, worldPosY;
 	
 	public Camera() {
-		this.worldPosX = 0;
-		this.worldPosY = 0;
+		this.worldPosX = 280;
+		this.worldPosY = 320;
 	}
 
 	public double getWorldPosX() {
@@ -21,5 +26,24 @@ public class Camera {
 
 	public void setWorldPosY(double worldPosY) {
 		this.worldPosY = worldPosY;
+	}
+	
+	public void update(GameContainer gameContainer, StateBasedGame game, int arg2)
+			throws SlickException {
+		Input input = gameContainer.getInput();
+		if(input.isKeyDown(Input.KEY_W)) {
+			worldPosY = worldPosY + 1;
+		};
+		if(input.isKeyDown(Input.KEY_S)) {
+			worldPosY = worldPosY - 1;
+		};
+		
+		if(input.isKeyDown(Input.KEY_D)) {
+			worldPosX = worldPosX - 1;
+		};
+		if(input.isKeyDown(Input.KEY_A)) {
+			worldPosX = worldPosX + 1;
+		};
+		
 	}
 }
