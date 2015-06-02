@@ -47,7 +47,7 @@ public class TerrainGenerator {
 		//Create tile map and set the tiles' heights.
 		for(int i=0;i<height;i++){
 	        for(int j=0;j<width;j++){
-	        	this.tiles[i][j] = new Tile();
+	        	this.tiles[i][j] = new Tile(j, i);
 	        	this.tiles[i][j].setHeight(this.grid[i][j]);
 	        	this.tiles[i][j].setType(Tile.TileType.Flat);
 	        }
@@ -76,6 +76,10 @@ public class TerrainGenerator {
 	{
 		boolean correctionsMade = false;
 		return correctionsMade;
+	}
+	
+	public Map getMap(){
+		return new Map(width, height, tiles);
 	}
 	
 }

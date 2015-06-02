@@ -7,7 +7,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class TerrainEditor extends BasicGameState {
 	
-	private StateBasedGame game; 
+	private StateBasedGame game;
+	private Map map;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -33,7 +34,7 @@ public class TerrainEditor extends BasicGameState {
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 3;
 	}
 
 }

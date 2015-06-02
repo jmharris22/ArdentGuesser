@@ -31,7 +31,7 @@ public class SplashScreenStartup extends BasicGameState {
 		// TODO Auto-generated method stub
 		timer+=1;
 		if(timer >= 90) {
-			arg1.enterState(1);
+			arg1.enterState(3);
 		};
 	}
 
