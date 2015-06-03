@@ -40,17 +40,19 @@ public class TerrainGenerator {
 	            result[i][j]=0.5*(1+simplexNoise.getNoise(x,y));
 	           double printResult = 100.0*result[i][j];
 	           int integerResultClamp = (int) Math.abs(printResult);
-	           integerResultClamp = integerResultClamp%3;
+	           integerResultClamp = integerResultClamp%2;
 	           this.grid[i][j] = integerResultClamp;
 	        }
 	    }
 		
 		//Create tile map and set the tiles' heights.
+		int counter = 0;
 		for(int i=0;i<height;i++){
 	        for(int j=0;j<width;j++){
-	        	this.tiles[i][j] = new Tile(j, i);
+	        	this.tiles[i][j] = new Tile(i, j, counter);
 	        	this.tiles[i][j].setHeight(this.grid[i][j]);
 	        	this.tiles[i][j].setType(Tile.TileType.Flat);
+	        	counter++;
 	        }
 		}
 		
@@ -71,6 +73,14 @@ public class TerrainGenerator {
 	private boolean fixTransitionsLeftToRight(int[][] grid)
 	{
 		boolean correctionsMade = false;
+		int counter = 0;
+		for(int i=0;i<height;i++){
+	        for(int j=0;j<width;j++){
+	        		tiles[i][j].setCounter(counter);
+	        		counter++;
+	        	}
+	        }
+		
 		return correctionsMade;
 	}
 	private boolean fixTransitionsTopToBottom(int[][] grid)

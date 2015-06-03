@@ -31,18 +31,26 @@ public class Camera {
 	public void update(GameContainer gameContainer, StateBasedGame game, int arg2)
 			throws SlickException {
 		Input input = gameContainer.getInput();
+		
+		int movePixels = 4;
+		if(input.isKeyDown(Input.KEY_LCONTROL)){
+			movePixels = 1;
+		}
+		if(input.isKeyDown(Input.KEY_LSHIFT)){
+			movePixels = 8;
+		}
 		if(input.isKeyDown(Input.KEY_W)) {
-			worldPosY = worldPosY + 1;
+			worldPosY = worldPosY + movePixels;
 		};
 		if(input.isKeyDown(Input.KEY_S)) {
-			worldPosY = worldPosY - 1;
+			worldPosY = worldPosY - movePixels;
 		};
 		
 		if(input.isKeyDown(Input.KEY_D)) {
-			worldPosX = worldPosX - 1;
+			worldPosX = worldPosX - movePixels;
 		};
 		if(input.isKeyDown(Input.KEY_A)) {
-			worldPosX = worldPosX + 1;
+			worldPosX = worldPosX + movePixels;
 		};
 		
 	}

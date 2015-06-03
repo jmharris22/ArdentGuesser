@@ -16,7 +16,7 @@ public class TerrainEditor extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		this.game = arg1;
-		this.map = new TerrainGenerator(10, 10).getMap();
+		this.map = new TerrainGenerator(5, 15).getMap();
 		this.c = new Camera();
 	}
 

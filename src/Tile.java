@@ -29,17 +29,23 @@ public class Tile {
 	private int x, y;
 	private static final int TILE_HEIGHT = 32;
 	private static final int TILE_WIDTH = 64;
+	private int counter;
 	
 	
-	public Tile(int gridX, int gridY) {
+	public Tile(int gridX, int gridY, int counter) {
 		this.x = gridX;
         this.y = gridY;
+        this.counter = counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
 	}
 
 	public static SpriteSheet getTileSheet() {
 		if(tileSheet == null) {
 			try {
-				setTileSheet(new SpriteSheet(new Image("art/terrain/Tiles.png"), 64, 32));
+				setTileSheet(new SpriteSheet(new Image("art/terrain/Tiles.png"), 64, 64));
 			} catch (SlickException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,16 +82,28 @@ public class Tile {
 	
 	public void render(GameContainer gameContainer, StateBasedGame game, Graphics g, Camera c, int colX, int colY)
 			throws SlickException {
+		float screenX;
+		float screenY;
 		switch(this.type) {
 			case Flat:
 				
-				float screenX = (this.x - this.y) * TILE_WIDTH/2;
-				float screenY = (this.x + this.y) * TILE_HEIGHT/2;
+				screenX = (this.x - this.y) * TILE_WIDTH/2;
+				screenY = (this.x + this.y) * TILE_HEIGHT/2;
 				screenY = (float) (c.getWorldPosY() - screenY);
 				screenX = (float) (c.getWorldPosX() - screenX);
-			
+				if(this.height == 1) {
+					screenY = screenY - TILE_HEIGHT/2;
+				}
 				getTileSheet().getSubImage(0, 0).draw(screenX,screenY);
-			
+				
+				//String heightString = "" + this.height;
+				//g.drawString(heightString, screenX + TILE_WIDTH/2 - 6 , screenY + TILE_HEIGHT/2 - 12);
+				
+				//String coords = this.x + "," + this.y;
+				//g.drawString(coords, screenX + TILE_WIDTH/2 - 6 , screenY + TILE_HEIGHT/2 - 12);
+				
+				g.drawString(("" + this.counter), screenX + TILE_WIDTH/2 - 6 , screenY + TILE_HEIGHT/2 - 12);
+				
 				break;
 			case AdjoiningTriangleFace:
 				break;
@@ -98,12 +116,24 @@ public class Tile {
 			case HalfSlopeWest:
 				break;
 			case SlopeDownNorthEast:
+				screenX = (this.x - this.y) * TILE_WIDTH/2;
+				screenY = (this.x + this.y) * TILE_HEIGHT/2;
+				screenY = (float) (c.getWorldPosY() - screenY);
+				screenX = (float) (c.getWorldPosX() - screenX);
+				getTileSheet().getSubImage(0, 1).draw(screenX,screenY);
 				break;
 			case SlopeDownNorthWest:
 				break;
 			case SlopeDownSouthEast:
 				break;
 			case SlopeDownSouthWest:
+				
+				screenX = (this.x - this.y) * TILE_WIDTH/2;
+				screenY = (this.x + this.y) * TILE_HEIGHT/2 + 16;
+				screenY = (float) (c.getWorldPosY() - screenY);
+				screenX = (float) (c.getWorldPosX() - screenX);
+				getTileSheet().getSubImage(2, 0).draw(screenX,screenY);
+				
 				break;
 			case SteepSlopeEast:
 				break;
@@ -117,7 +147,7 @@ public class Tile {
 				break;
 			case TopHalfSlopeSouth:
 				break;
-			case TopHalfSlopeWest:
+			case TopHalfSlopeWest: 
 				break;
 			default:
 				break;
