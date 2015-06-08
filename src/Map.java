@@ -8,10 +8,14 @@ public class Map {
 	private Tile[][] tiles;
 	private int width;
 	private int height;
+	private int worldPixelWidth;
+	private int worldPixelHeight;
 	public Map(int width, int height, Tile[][] tiles) {
 		this.width = width;
 		this.height = height;
 		this.tiles = tiles;
+		this.worldPixelWidth = width*32;
+		this.worldPixelWidth = height*32;
 	}
 	public int getWidth() {
 		return width;
@@ -41,7 +45,6 @@ public class Map {
 	            }
 	        }
 		}
-		
 	}
 	
 	public void update(GameContainer gameContainer, StateBasedGame game, int arg2)
